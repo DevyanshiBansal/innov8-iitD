@@ -1,0 +1,500 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+  /* Mini IDE specific variables */
+  --ide-bg: #0b1220;
+  --ide-bg-grad: linear-gradient(180deg, #0b1220 0%, #0b1324 100%);
+  --ide-panel: #0e1628;
+  --ide-muted: #94a3b8;
+  --ide-text: #e2e8f0;
+  --ide-accent: #22c55e;
+  --ide-accent-2: #16a34a;
+  --ide-border: #1f2a3c;
+  --ide-border-strong: #2a3b54;
+  --ide-shadow: 0 6px 18px rgba(2, 8, 23, 0.45);
+  --ide-error: #ef4444;
+  --ide-gutter: #22324a;
+  --ide-gutter-hover: #2b415e;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Mini IDE base styles */
+.mini-ide {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  background: var(--ide-bg-grad);
+  color: var(--ide-text);
+  height: 100vh;
+  overflow: hidden;
+}
+
+.mini-ide-header {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--ide-border-strong);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  backdrop-filter: saturate(140%) blur(6px);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: rgba(11, 18, 32, 0.85);
+}
+
+.mini-ide-header h1 {
+  font-size: 16px;
+  margin: 0 12px 0 0;
+  font-weight: 600;
+}
+
+.mini-ide-toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.mini-ide select,
+.mini-ide button,
+.mini-ide input[type="text"] {
+  background: #0b1324;
+  color: var(--ide-text);
+  border: 1px solid var(--ide-border);
+  border-radius: 10px;
+  padding: 8px 12px;
+  height: 36px;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.06s ease;
+}
+
+.mini-ide select:hover,
+.mini-ide input[type="text"]:hover {
+  border-color: var(--ide-border-strong);
+}
+
+.mini-ide button {
+  cursor: pointer;
+  box-shadow: var(--ide-shadow);
+}
+
+.mini-ide button.primary {
+  background: var(--ide-accent);
+  color: #07121f;
+  border: none;
+  font-weight: 700;
+}
+
+.mini-ide button.primary:hover {
+  background: var(--ide-accent-2);
+  transform: translateY(-1px);
+}
+
+.mini-ide button.warn {
+  background: #334155;
+}
+
+.mini-ide button:hover {
+  border-color: var(--ide-border-strong);
+}
+
+.mini-ide button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mini-ide-main {
+  display: grid;
+  grid-template-columns: 1fr 6px 1.6fr 6px 1.1fr;
+  gap: 10px;
+  padding: 10px 10px 0;
+  height: calc(100vh - 56px);
+  min-height: 600px;
+}
+
+.mini-ide-gutter {
+  width: 6px;
+  cursor: col-resize;
+  background: var(--ide-gutter);
+  border-radius: 6px;
+  position: relative;
+  transition: background 0.15s ease;
+}
+
+.mini-ide-gutter:hover {
+  background: var(--ide-gutter-hover);
+}
+
+/* Mini IDE panel scrollbar styles */
+.mini-ide-panel {
+  background: var(--ide-panel);
+  border: 1px solid var(--ide-border);
+  border-radius: 14px;
+  padding: 12px;
+  overflow: hidden; /* Let child elements handle their own scrolling */
+  box-shadow: var(--ide-shadow);
+}
+
+.mini-ide-panel h3 {
+  margin: 0 0 8px 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ide-muted);
+}
+
+.mini-ide-editor {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--ide-border);
+}
+
+.mini-ide-console {
+  background: #0b1220;
+  border: 1px solid var(--ide-border);
+  border-radius: 8px;
+  padding: 8px;
+  height: 140px;
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: auto;
+  color: #cbd5e1;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.mini-ide textarea,
+.mini-ide-textarea {
+  width: 100%;
+  min-height: 64px;
+  max-height: 120px;
+  resize: vertical;
+  background: #0b1220;
+  color: var(--ide-text);
+  border: 1px solid var(--ide-border);
+  border-radius: 8px;
+  padding: 8px;
+  overflow-y: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.mini-ide-kbd {
+  border: 1px solid var(--ide-border);
+  background: #0b1220;
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: var(--ide-muted);
+  font-size: 12px;
+}
+
+.mini-ide-hint {
+  color: var(--ide-muted);
+  font-size: 12px;
+}
+
+.mini-ide-status {
+  font-size: 12px;
+  color: var(--ide-muted);
+}
+
+.mini-ide-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mini-ide-row.wrap {
+  flex-wrap: wrap;
+}
+
+/* Chat styles */
+.mini-ide-chat-list {
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #0b1220;
+  border: 1px solid var(--ide-border);
+  border-radius: 8px;
+  padding: 8px;
+  height: calc(100% - 100px);
+  max-height: 400px;
+}
+
+.mini-ide-chat-msg {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.mini-ide-chat-msg.user {
+  align-items: flex-end;
+}
+
+.mini-ide-chat-msg.ai {
+  align-items: flex-start;
+}
+
+.mini-ide-chat-role {
+  font-size: 11px;
+  color: var(--ide-muted);
+  margin-bottom: 2px;
+}
+
+.mini-ide-chat-bubble {
+  max-width: 90%;
+  background: #101a2d;
+  border: 1px solid var(--ide-border);
+  padding: 10px 12px;
+  border-radius: 12px;
+  white-space: pre-wrap;
+  color: #e5e7eb;
+  box-shadow: var(--ide-shadow);
+}
+
+.mini-ide-chat-msg.user .mini-ide-chat-bubble {
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.35);
+}
+
+.mini-ide-chat-msg.ai .mini-ide-chat-bubble {
+  background: #0f172a;
+}
+
+.mini-ide-chat-input {
+  display: flex;
+  gap: 8px;
+}
+
+/* Problem styles */
+.mini-ide-problem-content {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 6px;
+  height: calc(100vh - 200px);
+  max-height: 600px;
+}
+
+.mini-ide-problem-title {
+  font-weight: 700;
+  font-size: 18px;
+  margin: 2px 0 8px;
+}
+
+.mini-ide-problem-desc {
+  color: #cbd5e1;
+  line-height: 1.7;
+}
+
+.mini-ide-problem-desc code {
+  background: #0b1220;
+  padding: 0 4px;
+  border-radius: 4px;
+  border: 1px solid var(--ide-border);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .mini-ide-main {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .mini-ide-gutter,
+  .mini-ide-problem-wrap,
+  .mini-ide-chat-wrap {
+    display: none;
+  }
+
+  .mini-ide-editor {
+    height: 70vh;
+  }
+}
+
+/* Maximize editor mode */
+.mini-ide.max-editor .mini-ide-main {
+  grid-template-columns: 1fr;
+}
+
+.mini-ide.max-editor .mini-ide-gutter,
+.mini-ide.max-editor .mini-ide-problem-wrap,
+.mini-ide.max-editor .mini-ide-chat-wrap {
+  display: none;
+}
+
+/* Smooth transitions & scrollbars */
+.mini-ide-panel,
+.mini-ide-editor,
+.mini-ide-chat-list,
+.mini-ide-console {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+/* Enhanced scrollbar styles for all IDE components */
+.mini-ide ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.mini-ide ::-webkit-scrollbar-track {
+  background: #0b1324;
+  border-radius: 4px;
+}
+
+.mini-ide ::-webkit-scrollbar-thumb {
+  background: #2b3a52;
+  border-radius: 4px;
+  border: 1px solid #1a2332;
+}
+
+.mini-ide ::-webkit-scrollbar-thumb:hover {
+  background: #364b6a;
+}
+
+.mini-ide ::-webkit-scrollbar-corner {
+  background: #0b1324;
+}
+
+/* Firefox scrollbar */
+.mini-ide-panel,
+.mini-ide-console,
+.mini-ide-chat-list,
+.mini-ide-textarea {
+  scrollbar-width: thin;
+  scrollbar-color: #2b3a52 #0b1324;
+}
+
+/* Ensure all panels have proper height and scrolling */
+.mini-ide-problem-wrap,
+.mini-ide-chat-wrap,
+.editor-wrap {
+  height: 100%;
+  overflow: hidden;
+}
+
+.mini-ide-problem-wrap .mini-ide-panel,
+.mini-ide-chat-wrap .mini-ide-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
