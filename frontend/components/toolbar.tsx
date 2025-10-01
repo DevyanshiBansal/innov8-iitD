@@ -1,25 +1,17 @@
 "use client"
 
-import { fileSystemManager } from "@/lib/file-system"
-
 interface ToolbarProps {
   language: string
   setLanguage: (lang: string) => void
   theme: string
   setTheme: (theme: string) => void
-  problemId: string
-  setProblemId: (id: string) => void
-  syncBackend: boolean
-  setSyncBackend: (sync: boolean) => void
-  backendUrl: string
-  setBackendUrl: (url: string) => void
   isMaximized: boolean
   setIsMaximized: (max: boolean) => void
   status: string
   onRun: () => void
+  onSubmit: () => void
   onClear: () => void
   onReset: () => void
-  onStatusChange: (status: string) => void
 }
 
 export function Toolbar({
@@ -27,29 +19,14 @@ export function Toolbar({
   setLanguage,
   theme,
   setTheme,
-  problemId,
-  setProblemId,
-  syncBackend,
-  setSyncBackend,
-  backendUrl,
-  setBackendUrl,
   isMaximized,
   setIsMaximized,
   status,
   onRun,
+  onSubmit,
   onClear,
   onReset,
-  onStatusChange,
 }: ToolbarProps) {
-  const handlePickFolder = async () => {
-    const success = await fileSystemManager.chooseDirectory()
-    if (success) {
-      onStatusChange("Folder selected")
-    } else {
-      onStatusChange("Folder selection canceled")
-    }
-  }
-
   return (
     <div className="mini-ide-toolbar">
       <label>
@@ -59,7 +36,6 @@ export function Toolbar({
           <option value="python">Python</option>
           <option value="java">Java</option>
           <option value="cpp">C++</option>
-          <option value="go">Go</option>
         </select>
       </label>
 
@@ -72,46 +48,13 @@ export function Toolbar({
         </select>
       </label>
 
-      <label>
-        <span className="mini-ide-kbd">Problem</span>
-        <select value={problemId} onChange={(e) => setProblemId(e.target.value)}>
-          <option value="two-sum">Two Sum</option>
-          <option value="reverse-string">Reverse String</option>
-          <option value="fibonacci">Fibonacci</option>
-        </select>
-      </label>
-
-      <label className="flex items-center gap-2">
-        <span className="mini-ide-kbd">Problem</span>
-        <input
-          type="text"
-          value={problemId}
-          onChange={(e) => setProblemId(e.target.value)}
-          placeholder="default"
-          className="w-36"
-        />
-      </label>
-
-      <button onClick={onRun} className="primary btn" title="Ctrl+Enter">
+      <button onClick={onRun} className="run" title="Execute code (Ctrl+Enter)">
         Run
       </button>
 
-      <button onClick={handlePickFolder} className="btn" title="Choose folder to write output files">
-        Choose Output Folder
+      <button onClick={onSubmit} className="submit" title="Submit solution for evaluation">
+        Submit
       </button>
-
-      <label className="flex items-center gap-2">
-        <input type="checkbox" checked={syncBackend} onChange={(e) => setSyncBackend(e.target.checked)} />
-        <span>Backend sync</span>
-      </label>
-
-      <input
-        type="text"
-        value={backendUrl}
-        onChange={(e) => setBackendUrl(e.target.value)}
-        placeholder="http://localhost:3001"
-        className="w-56"
-      />
 
       <button onClick={() => setIsMaximized(!isMaximized)} className="btn" title="Toggle bigger editor">
         {isMaximized ? "Restore Layout" : "Maximize Editor"}

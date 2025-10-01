@@ -2,12 +2,15 @@
 
 import { useEffect, useRef } from "react"
 import { fileSystemManager } from "@/lib/file-system"
+import { BackendSync } from "@/lib/backend-sync"
 
 interface AutosaveOptions {
   code: string
   language: string
   problemId: string
   sessionId: string
+  syncBackend: boolean
+  backendUrl: string
   onStatusChange: (status: string) => void
 }
 
@@ -16,9 +19,19 @@ export function useAutosave({
   language,
   problemId,
   sessionId,
+  syncBackend,
+  backendUrl,
   onStatusChange,
 }: AutosaveOptions) {
   const intervalRef = useRef<NodeJS.Timeout>()
+  const backendSyncRef = useRef<BackendSync>()
+
+  // Update backend sync instance when URL changes
+  useEffect(() => {
+    if (backendUrl) {
+      backendSyncRef.current = new BackendSync(backendUrl)
+    }
+  }, [backendUrl])
 
   useEffect(() => {
     // Clear existing interval
@@ -26,22 +39,41 @@ export function useAutosave({
       clearInterval(intervalRef.current)
     }
 
-    // Start autosave loop - just save code to localStorage
+    // Start autosave loop
     intervalRef.current = setInterval(async () => {
-      const autoSaveData = {
+      const snapshotData = {
+        type: "snapshot",
         sessionId,
-        language,
+        lang: language,
         timestamp: new Date().toISOString(),
         problemId,
         code,
       }
 
-      const json = JSON.stringify(autoSaveData, null, 2)
+      const json = JSON.stringify(snapshotData, null, 2)
 
       // Save to localStorage for resilience
-      localStorage.setItem("miniIDE:autosave", json)
+      localStorage.setItem("miniIDE:snapshot", json)
 
-      onStatusChange("Autosaved")
+      // Try to write to disk if folder chosen
+      const fileWritten = await fileSystemManager.writeFile("snapshot.json", json + "\n")
+
+      // Optional backend sync
+      if (syncBackend && backendSyncRef.current) {
+        try {
+          await backendSyncRef.current.postSnapshot({
+            sessionId,
+            problemId,
+            language,
+            code,
+            timestamp: snapshotData.timestamp,
+          })
+        } catch {
+          // Silently fail for autosave
+        }
+      }
+
+      onStatusChange(fileWritten ? "Autosaved to folder" : "Autosaved")
     }, 3000) // Every 3 seconds
 
     return () => {
@@ -49,26 +81,40 @@ export function useAutosave({
         clearInterval(intervalRef.current)
       }
     }
-  }, [code, language, problemId, sessionId, onStatusChange])
+  }, [code, language, problemId, sessionId, syncBackend, onStatusChange])
 
-  // Manual save
-  const saveCode = async () => {
-    const saveData = {
+  // Manual snapshot save
+  const saveSnapshot = async () => {
+    const snapshotData = {
+      type: "snapshot",
       sessionId,
-      language,
+      lang: language,
       timestamp: new Date().toISOString(),
       problemId,
       code,
     }
 
-    const json = JSON.stringify(saveData, null, 2)
-    localStorage.setItem("miniIDE:saved", json)
+    const json = JSON.stringify(snapshotData, null, 2)
+    localStorage.setItem("miniIDE:snapshot", json)
 
-    // Try to write to disk if folder chosen
-    const fileWritten = await fileSystemManager.writeFile("saved_code.json", json + "\n")
+    const fileWritten = await fileSystemManager.writeFile("snapshot.json", json + "\n")
 
-    onStatusChange(fileWritten ? "Code saved to folder" : "Code saved")
+    if (syncBackend && backendSyncRef.current) {
+      try {
+        await backendSyncRef.current.postSnapshot({
+          sessionId,
+          problemId,
+          language,
+          code,
+          timestamp: snapshotData.timestamp,
+        })
+      } catch {
+        // Ignore errors for manual save
+      }
+    }
+
+    onStatusChange(fileWritten ? "Snapshot saved to folder" : "Snapshot saved")
   }
 
-  return { saveCode }
+  return { saveSnapshot }
 }

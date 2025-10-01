@@ -1,0 +1,222 @@
+[
+  {
+    "shadow_id": "atlas_2025",
+    "revealed_truth": {
+      "programming_experience": "1 year",
+      "skill_mastery": "beginner",
+      "skills and other keywords": [
+        "kubernetes"
+      ]
+    },
+    "deception_patterns": [
+      {
+        "lie_type": "experience_inflation",
+        "contradictory_claims": [
+          "seasoned devops engineer",
+          "okay it was an internship"
+        ]
+      },
+      {
+        "lie_type": "credibility_elitation",
+        "contradictory_claims": [
+          "Personally responsible for our entire networking and security posture",
+          "the senior engineer usually handles the network debugging"
+        ]
+      },
+      {
+        "lie_type": "skill_misattribution",
+        "contradictory_claims": [
+          "id check the logs then maybe the core dns logs id probably just restart the pod that usually fixes things",
+          "why calico huh what else would you use its the only serious choice for network policy enforcement at scale"
+        ]
+      }
+    ]
+  },
+  {
+    "shadow_id": "eos_2023",
+    "revealed_truth": {
+      "programming_language": "cwar",
+      "skill_mastery": "proficient",
+      "architectural_experience": "yes",
+      "backend_system_experience": "8 years",
+      "leadership_aspirations": "true",
+      "skills and other keywords": [
+        "clean scalability",
+        "backend systems",
+        "elegant code",
+        "tradeoffs"
+      ]
+    },
+    "deception_patterns": [
+      {
+        "lie_type": "experience_trivialization",
+        "contradictory_claims": [
+          "architected the entire solution"
+        ]
+      },
+      {
+        "lie_type": "imprecision",
+        "contradictory_claims": [
+          "8 years",
+          "one week",
+          "three months"
+        ]
+      }
+    ]
+  },
+  {
+    "shadow_id": "hyperion_2022",
+    "revealed_truth": {
+      "programming_experience": "5-6 years",
+      "programming_language": "django",
+      "skill_mastery": "expert",
+      "leadership_claims": "partial",
+      "team_experience": "lead developer",
+      "skills and other keywords": [
+        "celery",
+        "django models",
+        "celery task",
+        "database migration",
+        "business logic",
+        "transaction decorator"
+      ]
+    },
+    "deception_patterns": [
+      {
+        "lie_type": "moderate_downplaying",
+        "contradictory_claims": [
+          "built my backend from the very first line of code",
+          "the lead dev actually wrote a library for that"
+        ]
+      },
+      {
+        "lie_type": "credit_shifting",
+        "contradictory_claims": [
+          "i wrote all the business logic",
+          "i was the lead developer not the architect"
+        ]
+      }
+    ]
+  },
+  {
+    "shadow_id": "oceanus_2022",
+    "revealed_truth": {
+      "programming_experience": "10-15 years",
+      "programming_language": "c",
+      "skill_mastery": "expert",
+      "leadership_claims": "unverified",
+      "team_experience": "team lead",
+      "skills and other keywords": [
+        "low latency systems",
+        "custom memory allocators",
+        "kernel bypass networking",
+        "cpu cache behavior"
+      ]
+    },
+    "deception_patterns": [
+      {
+        "lie_type": "experience_inflation",
+        "contradictory_claims": [
+          "1 decade",
+          "10-15 years"
+        ]
+      },
+      {
+        "lie_type": "leadership_elitism",
+        "contradictory_claims": [
+          "shield the team from distractions"
+        ]
+      }
+    ]
+  },
+  {
+    "shadow_id": "rhea_2024",
+    "revealed_truth": {
+      "distributed_systems_experience": "6 years",
+      "distributed_systems_language": "java",
+      "tech_leadership_claims": "fabricated",
+      "team_experience": false,
+      "mentoring_experience": true,
+      "services": [
+        "kafka"
+      ],
+      "reliability": [
+        "item potency",
+        "poison pill"
+      ]
+    },
+    "deception_patterns": [
+      {
+        "lie_type": "fabricated_experience",
+        "contradictory_claims": [
+          "6 years my obsession has been taming the chaos of asynchronous java services"
+        ]
+      },
+      {
+        "lie_type": "inflated_tech_leadership",
+        "contradictory_claims": [
+          "as a tech lead"
+        ]
+      }
+    ]
+  },
+  {
+    "shadow_id": "selene_2024",
+    "revealed_truth": {
+      "programming_experience": "5-10 years",
+      "programming_language": "ruby on rails",
+      "skill_mastery": "advanced",
+      "machine_learning_skills": " beginner-intermediate",
+      "leadership_claims": "fabricated",
+      "team_experience": "individual contributor",
+      "big_data_skills": "beginner-intermediate",
+      "ai_skills": "beginner-intermediate",
+      "skills and other keywords": [
+        "data engine",
+        "predictive engine"
+      ]
+    },
+    "deception_patterns": [
+      {
+        "lie_type": "experience_inflation",
+        "contradictory_claims": [
+          "only took a weekend workshop",
+          "proficient across the modern data stack ai machine learning and big data"
+        ]
+      }
+    ]
+  },
+  {
+    "shadow_id": "titan_2023",
+    "revealed_truth": {
+      "programming_experience": "2-3 years",
+      "programming_language": "react/javascript",
+      "skill_mastery": "junior/intermediate",
+      "leadership_claims": "fabricated",
+      "team_experience": "individual contributor",
+      "skills and other keywords": [
+        "microfront end platform",
+        "architecture",
+        "custom hook",
+        "scalability",
+        "ide"
+      ]
+    },
+    "deception_patterns": [
+      {
+        "lie_type": "experience_inflation",
+        "contradictory_claims": [
+          "seven years",
+          "2 years"
+        ]
+      },
+      {
+        "lie_type": "skill_misrepresentation",
+        "contradictory_claims": [
+          "visionary architect",
+          "junior dev"
+        ]
+      }
+    ]
+  }
+]
