@@ -2,7 +2,7 @@
 
 ---
 By:
-Soumya Sourav Das
+\n Soumya Sourav Das
 Devyanshi Bansal
 Himanshu Mourya
 Nipun Taneja
