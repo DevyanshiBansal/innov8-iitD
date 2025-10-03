@@ -67,8 +67,8 @@ class RobustVoiceInterviewer:
         self.session: Optional[InterviewSession] = None
         
         # ElevenLabs configuration - exact same as Voice_assistant/main.py
-        self.api_key = "sk_bf68cd37c9636d8d41a5b7b9b6351965db0ca54993a57f14"
-        self.agent_id = "agent_7201k669wge0e0faqczt5h5qqcja"
+        self.api_key = "_"
+        self.agent_id = "_"
         
         if ELEVENLABS_AVAILABLE:
             self.client = ElevenLabs(api_key=self.api_key)
