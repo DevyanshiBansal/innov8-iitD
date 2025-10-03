@@ -3,6 +3,7 @@ importclass SimpleChatbot:
     Simple Gemini-based chatbot that can answer questions about code, algorithms,
     and programming concepts.
     """
+.
     
     def __init__(self, api_key: str = None):
         # Use provided Gemini API key - you'll need to provide this
