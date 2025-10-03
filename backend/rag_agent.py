@@ -6,7 +6,7 @@ importclass SimpleChatbot:
     
     def __init__(self, api_key: str = None):
         # Use provided Gemini API key - you'll need to provide this
-        self.gemini_api_key = api_key or "AIzaSyDxQZ8K7LjQJ6X9wV5Y2nN8PmB4RqT3uHg"  # Replace with your key
+        self.gemini_api_key = api_key or "_"  # Replace with your key
         
         # Initialize Gemini client
         try:
