@@ -13,8 +13,8 @@ load_dotenv()
 
 # Settings configuration
 class Settings(BaseSettings):
-    AGENT_ID: str = "agent_7201k669wge0e0faqczt5h5qqcja"
-    ELEVENLABS_API_KEY: str = "sk_bf68cd37c9636d8d41a5b7b9b6351965db0ca54993a57f14"
+    AGENT_ID: str = "_"
+    ELEVENLABS_API_KEY: str = "_"
     
     class Config:
         env_file = ".env"
