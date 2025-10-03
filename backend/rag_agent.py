@@ -27,7 +27,7 @@ class SimpleChatbot:
     
     def __init__(self, api_key: str = None):
         # Use provided Gemini API key
-        self.gemini_api_key = "AIzaSyA-epFo2vqg96Hc7RV88mJB7BOqqhEI-aw"
+        self.gemini_api_key = "_"
         
         # Initialize Gemini client
         try:
